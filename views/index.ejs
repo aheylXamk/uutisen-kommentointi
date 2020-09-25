@@ -1,0 +1,19 @@
+<%- include("includes/header") -%>
+
+
+<div class="container">
+
+    <h1>Uutisia</h1>
+
+    <% uutisia.forEach( (uutinen) => { %>
+    
+        <h3><%= uutinen.otsikko %></h3>
+        <p><%- uutinen.sisalto %></p>
+
+
+    <% }); %>
+
+    <a href="/login/" class="btn btn-primary">Kirjaudu sisään kommentoidaksesi</a>
+</div>
+
+<%- include("includes/footer") -%>

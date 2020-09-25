@@ -1,0 +1,53 @@
+<%- include("includes/header") -%>
+
+
+<div class="container">
+
+    <h1>Uutisia</h1>
+
+    <% uutisia.forEach( (uutinen) => { %>
+    
+        <h3><%= uutinen.otsikko %></h3>
+        <p><%- uutinen.sisalto %></p>
+
+
+    <% }); %>
+
+   <h2>Kommentit</h2>
+
+
+
+    <% kommentit.forEach( (kommentti) => { %>
+
+        <% let aika = new Date(kommentti.paivamaara); %>
+    
+        <p><%= aika.getDate() %>.<%= aika.getMonth()+1 %>.<%= aika.getFullYear()%> <%=aika.getHours()%>:<%=aika.getMinutes()%>, Nimimerkki: <%= kommentti.nimimerkki %> Kommentoi uutista: <%= kommentti.uutisId %></p>
+        <p><strong><%- kommentti.kommentti %></strong></p>
+    
+    
+        
+        
+       <% }); %>
+
+ 
+
+
+
+
+    <form method="POST" action="/tallenna">
+
+    <%
+        let nyt = new Date();
+    %>
+    
+    <%=nyt.getDate()%>.<%=nyt.getMonth()+1%>.<%=nyt.getFullYear()%> <%=nyt.getHours()%>:<%=nyt.getMinutes()%>
+    <input type="text" name="uutisId" value="1" class="form-control">
+    <input type="text" name="nimimerkki" value="besserwisser" class="form-control">
+    <textarea name="kommentti" class="form-control"></textarea>
+
+    <input type="submit" name="tallenna" value="Lähetä kommentti" class="btn btn-primary">
+
+</form>
+</div>
+
+<%- include("includes/footer") -%>
